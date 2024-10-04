@@ -5,7 +5,7 @@ export function getBody(cb: (data: string) => void) {
   }
   
   export function setBody(data: string, cb: () => void) {
-    Office.context.mailbox.item.body.setAsync(data, { coercionType: Office.CoercionType.Text }, function () {
+    Office.context.mailbox.item.body.setAsync(data, { coercionType: Office.CoercionType.Text }, function (_result) {
       cb();
     });
   }

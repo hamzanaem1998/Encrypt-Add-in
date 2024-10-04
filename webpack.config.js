@@ -20,7 +20,8 @@ module.exports = async (env, options) => {
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       vendor: ["react", "react-dom", "core-js", "@fluentui/react-components", "@fluentui/react-icons"],
-      taskpane: ["./src/taskpane/index.tsx", "./src/taskpane/taskpaneSend.html"],
+      taskpaneSend: ["./src/taskpane/indexSend.tsx", "./src/taskpane/taskpaneSend.html"],
+      taskpaneRead: ["./src/taskpane/indexRead.tsx", "./src/taskpane/taskpaneRead.html"],
       commands: "./src/commands/commands.ts",
     },
     output: {
@@ -83,7 +84,12 @@ module.exports = async (env, options) => {
       new HtmlWebpackPlugin({
         filename: "taskpaneSend.html",
         template: "./src/taskpane/taskpaneSend.html",
-        chunks: ["polyfill", "vendor", "taskpane"],
+        chunks: ["polyfill", "vendor", "taskpaneSend"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "taskpaneRead.html",
+        template: "./src/taskpane/taskpaneRead.html",
+        chunks: ["polyfill", "vendor", "taskpaneRead"],
       }),
       new HtmlWebpackPlugin({
         filename: "commands.html",

@@ -76,11 +76,9 @@ const EncryptTaskPane: React.FC = () => {
         <div className={styles.bodyContainer}>
             <main>
                 <h2 className={styles.titleTaskPane}>Chiffrement de mail</h2>
-                <p>
-                    Afin de signer et chiffrer votre message, veuillez sélectionner votre clé privée :
-                </p>
+
                 <form id="myform" onSubmit={handleSubmit} className={styles.formContainer}>
-                    <label htmlFor="pkfile">Sélectionnez votre clé privée :</label>
+                    <label htmlFor="pkfile">Afin de signer et chiffrer votre message, veuillez sélectionner votre clé privée :</label>
                     <input
                         id="pkfile"
                         type="file"

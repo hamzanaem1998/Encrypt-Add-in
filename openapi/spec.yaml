@@ -1,0 +1,52 @@
+swagger: '2.0'
+x-stoplight:
+  id: gfkfgjkgk
+info:
+  title: Snippets API
+  description: Test description
+  termsOfService: 'https://www.google.com/policies/terms/'
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: '127.0.0.1:8000'
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  auth_key:
+    name: X-Authorization
+    type: apiKey
+    in: header
+security:
+  - Basic: []
+paths:
+  '/user/{email}':
+    get:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              fileText:
+                type: string
+              certHash:
+                type: string
+              root:
+                type: boolean
+          examples:
+            example:
+              id: 219
+              fileText: "-----BEGIN CERTIFICATE-----\nMIIEETCCAfkCFA4Kt/9/tr9OLTukBcGHCHZG1NczMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQwHhcNMjQwNTEwMTA0NzE0WhcNMjUwNTEwMTA0NzE0WjBFMQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvchaW6GbZwMpK9PbEeZR2VKOjE8wKSsEIg7TiygDs18FzeSPbcWW6dq749VTLmdyHLh8VMB/+K/WTXd1Gwp+i4lxNEOFFE8QwLsBJOHHsWZ0KRESvoSa+6bT5u877sYwrjrmETXkqxTsHxYLXpl3ZQT0JGlnBfP5Kp1WFKUE3XTD6l3ApDHtMb8knUm3j0Rb4Xrt0WPmYL3OV0mzX6C5B25j8hiipBXRG9X8YiHrcEx0J4Ewl5NqSOIwG5MyLmpV/YA3JXFvEx8ayD6BVkk66S808pjPC2fZtiMBnHleb6Bgd/I+wlkq8k0D99Dr/xML10VQD0Y4qqH0EHpnQxsONQIDAQABMA0GCSqGSIb3DQEBCwUAA4ICAQA18MbfPwmrxsS9YC48F1l+XuJYdLjaut+t9AaVRc1hDCYferYFZ4auICSwpSzLQAKBaLh5Ub+b3DOI6fidzuyfvRq5kdK1XrVNk2/R0wMOqn/oHX9zvbv+Uyt4sprTw0Gak77h9QFn+Ttfq1sbeuzN+wu7oNwMNs5ol+THA1qdeQdz9oK6Wopt17KiAFF/QK2/AUN44r8kjDFxmkgr9l5Ii4uXN0ctrew5oe7Kb8mqhMbgrbRoujD4iCGYhgZzlUUuxdpWdgMARdVp7FA6+aJJc5U+L4Vdu0nEGzyFMFoEeuEWha9X0LYwD6wvpuk9xfBIgKQdk2d7CQbQAOYaAQ6GP5vOo3gASa9d1Fj2w42MeLNaqbitn253HLGcutJHfmYQqwfhRJ9owWk1y/f9krU7uNGCtFi+GncKhBiqgacrKhngwA6g3sXaCKhXOq0sj3QEzrPJh+j7ghQyhIQKyMANZlI8GezsekNVbE5Jabuqz/PhZdecAcPhsQ+oWUfRg4GVtQOhgcdT6wpnjGPe7APhQjDaJeI1zh0OEGN7s+0bMyvkztLbBLr3/u7T8D52GGpNUa2d6TsFpvWUM6Z4deMtJjTvIuw7yjK3VXgjVFJAWALKNAqa6hvn3ZNOSNueziGa8xiYZD55U1TL9Uf0c+Og78JlWwdCylkO9YjAs+sGIw==\n-----END CERTIFICATE-----"
+              certHash: 'cd996c25b05464dd3c810b37b99f69981a972c2bf947ab4d437e0b9060f2851f'
+              root: false

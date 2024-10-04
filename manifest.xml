@@ -69,7 +69,7 @@
                       <bt:Image size="80" resid="Icon.80x80"/>
                     </Icon>
                     <Action xsi:type="ShowTaskpane">
-                      <SourceLocation resid="Taskpane.Url"/>
+                      <SourceLocation resid="TaskpaneRead.Url"/>
                     </Action>
                   </Control>
                 </Group>
@@ -79,7 +79,7 @@
               <OfficeTab id="TabDefault">
                 <Group id="msgComposeCmdGroup">
                   <Label resid="GroupLabel"/>
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton2">
+                  <Control xsi:type="Button" id="msgReadOpenPaneButtonSend">
                     <Label resid="TaskpaneButton.Label"/>
                     <Supertip>
                       <Title resid="TaskpaneButton.Label"/>
@@ -91,7 +91,7 @@
                       <bt:Image size="80" resid="Icon.80x80"/>
                     </Icon>
                     <Action xsi:type="ShowTaskpane">
-                      <SourceLocation resid="Taskpane2.Url"/>
+                      <SourceLocation resid="TaskpaneSend.Url"/>
                     </Action>
                   </Control>
                   <Control xsi:type="Button" id="msgReadOpenPaneButtonForward">
@@ -131,8 +131,8 @@
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
           <bt:Url id="WebViewRuntime.Url" DefaultValue="https://localhost:3000/commands.html"/>
-          <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
-          <bt:Url id="Taskpane2.Url" DefaultValue="https://localhost:3000/taskpaneSend.html"/>
+          <bt:Url id="TaskpaneRead.Url" DefaultValue="https://localhost:3000/taskpaneRead.html"/>
+          <bt:Url id="TaskpaneSend.Url" DefaultValue="https://localhost:3000/taskpaneSend.html"/>
           <bt:Url id="TaskpaneForward.Url" DefaultValue="https://localhost:3000/taskpaneForward.html"/>
           <bt:Url id="JSRuntime.Url" DefaultValue="https://localhost:3000/commands.js"/>
         </bt:Urls>

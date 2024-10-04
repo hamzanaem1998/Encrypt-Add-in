@@ -69,7 +69,7 @@ function encryptSign(asyncResult: Office.AsyncResult<string>) {
       allowEvent: false,
       errorMessage: "Veuillez Chiffrer/Signer votre avant envoie!",
       cancelLabel: "Chiffrer/Signer",
-      commandId: "msgReadOpenPaneButton2",
+      commandId: "msgReadOpenPaneButtonSend",
     });
   } else event.completed({ allowEvent: true });
 }

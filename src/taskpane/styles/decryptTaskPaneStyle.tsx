@@ -52,6 +52,11 @@ const decryptTaskPaneStyle = makeStyles({
     color: '#ffffff',
   },
 
+  keyParagraphe: {
+    marginTop: '15px',
+    color: '#444',
+  }
+
 });
 
 export default decryptTaskPaneStyle;

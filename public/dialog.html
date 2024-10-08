@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoso Task Pane Add-in</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Grand titre centré */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2a9df4;
+            margin-bottom: 30px;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Style pour le corps du message */
+        .message-body {
+            padding: 20px;
+            background-color: #e9f5ff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a9df4;
+        }
+
+        /* Style pour les pièces jointes */
+        .attachments {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .attachment-item {
+            margin-bottom: 10px;
+        }
+
+        .attachment-item a {
+            color: #2a9df4;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .attachment-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Icône pour les pièces jointes */
+        .attachment-item img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="p-4">
+        <div class="container">
+            <!-- Grand titre centré -->
+            <h1>Contenu du mail déchiffré</h1>
+
+            <!-- Conteneur pour le corps du message -->
+            <h3>Corps du message :</h3>
+            <div id="body" class="message-body">
+                <!-- Le corps du message déchiffré sera inséré ici -->
+            </div>
+
+            <!-- Conteneur pour les pièces jointes -->
+            <h3>Pièces jointes :</h3>
+            <ul id="attachments" class="attachments">
+                <!-- Les pièces jointes seront insérées ici -->
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        Office.onReady(() => {
+            Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived, onMessageFromParent);
+        });
+
+        // Fonction pour convertir une chaîne base64 en un tableau d'octets (binaire)
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64); // Décoder la chaîne base64 en binaire
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len); // Créer un tableau d'octets
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i); // Convertir chaque caractère en son code binaire
+            }
+            return bytes.buffer; // Retourner le buffer binaire
+        }
+
+        const onMessageFromParent = (arg) => {
+            const messageFromParent = JSON.parse(arg.message);
+
+            // Afficher le corps du message
+            if (messageFromParent.body) {
+                document.getElementById("body").textContent = messageFromParent.body;
+            }
+
+            // Afficher les pièces jointes
+            if (messageFromParent.attachments && Array.isArray(messageFromParent.attachments)) {
+                const attachmentsDiv = document.getElementById("attachments");
+                attachmentsDiv.innerHTML = ''; // Réinitialiser les pièces jointes
+
+                // Ajouter chaque pièce jointe
+                messageFromParent.attachments.forEach(attachment => {
+                    const attachmentItem = document.createElement("li");
+                    attachmentItem.classList.add("attachment-item");
+
+                    // Convertir l'attachement en binaire (arrayBuffer)
+                    const binaryContent = base64ToArrayBuffer(attachment.attachment);
+
+                    // Créer un Blob à partir du binaire et générer un lien de téléchargement
+                    const blob = new Blob([binaryContent], { type: attachment.contentType });
+                    const url = URL.createObjectURL(blob);
+
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = url;
+                    downloadLink.download = attachment.name; // Nom du fichier à télécharger
+                    downloadLink.textContent = attachment.name;
+
+                    // Ajouter l'icône
+                    const icon = document.createElement("img");
+                    icon.src = "../../assets/file.png"; // Chemin vers l'icône
+                    icon.alt = "Icône de fichier";
+
+                    // Ajouter l'icône et le lien dans l'élément
+                    downloadLink.prepend(icon);
+                    attachmentItem.appendChild(downloadLink);
+                    attachmentsDiv.appendChild(attachmentItem);
+                });
+            }
+        };
+    </script>
+</body>
+
+</html>

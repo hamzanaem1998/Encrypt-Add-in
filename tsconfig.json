@@ -1,34 +1,25 @@
 {
   "compilerOptions": {
-    "allowUnusedLabels": false,
-    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    // Added this
-    "noImplicitReturns": false,
-    "noUnusedParameters": true,
-    "outDir": "dist",
-    "removeComments": false,
+    "noEmitOnError": true,
+    "outDir": "lib",
     "sourceMap": true,
     "target": "es5",
     "lib": [
-      "es7",
+      "es2015",
       "dom"
-    ],
-    "pretty": true,
-    "typeRoots": [
-      "node_modules/@types"
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "lib",
+    "lib-amd"
   ],
-  "compileOnSave": false,
-  "buildOnSave": false,
   "ts-node": { 
     "files": true 
   }
